@@ -114,6 +114,14 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        'sql_training' => [
+            'driver' => 'mysql',
+            'host' => '127.0.0.1',
+            'database' => 'sqltrainer',
+            'username' => 'sandbox_user',
+            'password' => 'patata',
+        ],
+
     ],
 
     /*

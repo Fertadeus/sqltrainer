@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>SQL Trainer</title>
 
     <!-- Bootstrap CSS -->
@@ -16,7 +18,7 @@
 </head>
 <body>
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 rounded-bottom-4">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">SQL Trainer</a>
 
@@ -27,10 +29,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto text-lg-start text-end">
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="{{ url('/') }}">Inicio</a>
-                    </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link" href="{{ url('/ejercicios') }}">Ejercicios</a>
+                        <a class="nav-link" href="{{ url('/ejercicio') }}">Ejercicios</a>
                     </li>
                     <li class="nav-item px-2">
                         <a class="nav-link" href="{{ url('/acerca') }}">Acerca de</a>
