@@ -19,7 +19,12 @@ class ExerciseController extends Controller
     {
         
         $exercise = Exercise::findOrFail($id);
-        return view('exercise.show', compact('exercise'));
+
+        //Pasa true o false dependiendo de si tiene o no un ejercicio por encima. 
+        //Esto sirve para la alerta de Ejercicio completado correctamente
+
+        $nextExercise = \App\Models\Exercise::where('id', '>', $id)->exists();
+        return view('exercise.show', compact('exercise', 'nextExercise'));
     }
 
 
@@ -61,7 +66,8 @@ class ExerciseController extends Controller
         try {
             //Clave en la seguridad, se conecta mediante el archivo "config/database.php", busca esa conexión.
             //Esa conexión únicamente tiene permiso para SELECTS en ciertas tablas
-            
+            //Básicamente, se implementa aislamiento mediante control de permisos a nivel de SGBD
+
             $userResult = DB::connection('sql_training')->select($query);
         } catch (\Throwable $e) {
             return response()->json([

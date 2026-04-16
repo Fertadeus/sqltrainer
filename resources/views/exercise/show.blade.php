@@ -17,9 +17,46 @@
     <div id="resultBox" class="border rounded p-3 bg-light" style="min-height: 120px;">
         <em>Ejecuta una consulta para ver el resultado.</em>
     </div>
-
 </div>
 
+<!--ALERTA SI SE COMPLETA BIEN EL ENUNCIADO-->
+
+@if($nextExercise)
+    <div class="modal fade" id="alerta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">¡Enhorabuena!</h5>
+        </div>
+        <div class="modal-body">
+            Respuesta correcta. ¿Quieres pasar al siguiente ejercicio?
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="botonCerrar" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <form action="{{ url('/ejercicio/'.$exercise->id+1) }}"><button type="submit" id="botonSiguiente" class="btn btn-primary">Siguiente ejercicio</button></form>
+        </div>
+        </div>
+    </div>
+    </div>
+@else
+    <div class="modal fade" id="alerta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">¡Enhorabuena!</h5>
+        </div>
+        <div class="modal-body">
+            Has completado todos los ejercicios. ¡Espero que te hayan servido de ayuda!
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="botonCerrar" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+@endif
+
+<!--FIN DE ALERTA SI SE COMPLETA BIEN EL ENUNCIADO-->
 <script>
 document.getElementById('runQuery').addEventListener('click', function () {
     const sql = document.getElementById('sql').value;
@@ -61,8 +98,15 @@ document.getElementById('runQuery').addEventListener('click', function () {
         // Mostrar resultado en JSON (luego lo convertiré a tabla)
         box.innerHTML = `<pre class="mb-0">${JSON.stringify(data.result, null, 2)}</pre>`;
 
+        //Si todo es correcto abre un modal y le añade al botón cerrar una función (por algún motivo no cierra si no hago esto xd)
         if (data.correct) {
-            alert('¡Enhorabuena! Has resuelto correctamente el ejercicio.');
+            var alerta = new bootstrap.Modal(document.getElementById("alerta"));
+            var botonCerrar = document.getElementById("botonCerrar").addEventListener("click", (event) => {
+                alerta.toggle();
+            }, {once : true});
+
+            alerta.toggle();
+
         }
     })
     .catch(error => {
