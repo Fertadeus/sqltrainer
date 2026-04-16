@@ -12,6 +12,7 @@
     <textarea id="sql" class="form-control" rows="6" placeholder="Escribe aquí tu consulta SELECT..."></textarea>
 
     <button id="runQuery" class="btn btn-primary mt-3 mb-5">Comprobar</button>
+    <button id="showSolution" class="btn btn-success mt-3 mb-5">Mostrar solución</button>
 
     <h4 class="mt-2">Resultado</h4>
     <div id="resultBox" class="border rounded p-3 bg-light" style="min-height: 120px;">
@@ -59,6 +60,9 @@
 
 <!--FIN DE ALERTA SI SE COMPLETA BIEN EL ENUNCIADO-->
 <script>
+
+//BOTÓN DE COMPROBAR
+
 document.getElementById('runQuery').addEventListener('click', function () {
     const sql = document.getElementById('sql').value;
 
@@ -89,15 +93,49 @@ document.getElementById('runQuery').addEventListener('click', function () {
         }
     })
     .then(data => {
-        const box = document.getElementById('resultBox');
 
-        if (data.error) {
-            box.innerHTML = `<div class="alert alert-danger mb-0">${data.error}</div>`;
-            return;
-        }
 
-        // Mostrar resultado en JSON (luego lo convertiré a tabla)
-        box.innerHTML = `<pre class="mb-0">${JSON.stringify(data.result, null, 2)}</pre>`;
+        // Mostrar resultado en Tablas (esto no sé hacerlo, mirarlo bien!! lo tabulo a la derecha para diferenciarlo del resto del código)
+
+            const box = document.getElementById('resultBox');
+
+            if (data.error) {
+                box.innerHTML = `<div class="alert alert-danger mb-0">${data.error}</div>`;
+                return;
+            }
+
+            
+
+            if (!data.result || data.result.length === 0) {
+                box.innerHTML = `<em>Consulta ejecutada correctamente, sin resultados.</em>`;
+                return;
+            }
+
+            // columnas dinámicas
+            const columns = Object.keys(data.result[0]);
+
+            let table = `<table class="table table-bordered table-striped">
+            <thead>
+            <tr>`;
+
+            columns.forEach(col => {
+                table += `<th>${col}</th>`;
+            });
+
+            table += `</tr></thead><tbody>`;
+
+            // filas
+            data.result.forEach(row => {
+                table += `<tr>`;
+                columns.forEach(col => {
+                    table += `<td>${row[col]}</td>`;
+                });
+                table += `</tr>`;
+            });
+
+            table += `</tbody></table>`;
+
+            box.innerHTML = `<div class="table-responsive">${table}</div>`;
 
         //Si todo es correcto abre un modal y le añade al botón cerrar una función (por algún motivo no cierra si no hago esto xd)
         if (data.correct) {
@@ -116,5 +154,16 @@ document.getElementById('runQuery').addEventListener('click', function () {
         `<div class="alert alert-danger mb-0">Error en la petición AJAX</div>`;
     });
 });
+
+
+/*
+        BOTÓN MOSTRAR SOLUCIÓN
+
+*/
+document.getElementById('showSolution').addEventListener('click', function () {
+
+    document.getElementById("sql").value = @json($exercise->expected_sql);
+})
+
 </script>
 @endsection
