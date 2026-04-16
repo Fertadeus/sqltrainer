@@ -50,6 +50,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" id="botonCerrar" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <form action="{{ url('/')}}"><button type="submit" id="botonSiguiente" class="btn btn-primary">Volver al menú principal</button></form>
         </div>
         </div>
     </div>
