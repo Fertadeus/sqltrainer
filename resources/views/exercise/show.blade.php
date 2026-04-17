@@ -6,7 +6,7 @@
     <h1 class="mb-4 text-center mb-5">Ejercicio {{ $exercise->id }}</h1>
 
     <h4>Enunciado</h4>
-    <p class="mb-5">{{ $exercise->description }}</p>
+    <p class="mb-5" style="text-align:justify;">{!! $exercise->description !!}</p>
 
     <h4 class="mt-4">Tu consulta SQL</h4>
     <textarea id="sql" class="form-control" rows="6" placeholder="Escribe aquí tu consulta SELECT..."></textarea>

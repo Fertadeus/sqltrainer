@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>SQL Trainer</title>
+    <title>eSQLa</title>
 
     <!-- Bootstrap CSS -->
     <link 
@@ -20,7 +20,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 rounded-bottom-4">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">SQL Trainer</a>
+            <a class="navbar-brand" href="{{ url('/') }}">eSQLa</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>

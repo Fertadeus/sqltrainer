@@ -11,7 +11,11 @@ class ExerciseController extends Controller
     public function index()
     {
         
-        $exercises = Exercise::all();
+        $exercises = Exercise::orderBy('course')
+        ->orderBy('id')
+        ->get()
+        ->groupBy('course');
+
         return view('exercise.index', compact('exercises'));
     }
 
