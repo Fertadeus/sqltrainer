@@ -13,6 +13,15 @@ class GameDataSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        DB::table('game_developer')->truncate();
+        DB::table('game_platform')->truncate();
+        DB::table('developers')->truncate();
+        DB::table('platforms')->truncate();
+        DB::table('games')->truncate();
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         // GAMES
         DB::table('games')->insert([
             [
