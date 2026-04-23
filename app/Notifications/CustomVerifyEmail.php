@@ -35,9 +35,7 @@ class CustomVerifyEmail extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-       $verificationUrl = VerifyEmail::createUrlUsing(function ($notifiable) {
-        return url('/email/verify/' . $notifiable->id . '/' . sha1($notifiable->email));
-        });
+       $verificationUrl = $this->verificationUrl($notifiable);
 
         return (new MailMessage)
             ->subject('Verifica tu cuenta en eSQLa')
