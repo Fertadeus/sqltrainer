@@ -10,13 +10,17 @@ class ExerciseController extends Controller
 {
     public function index()
     {
-        
+   
         $exercises = Exercise::orderBy('course')
-        ->orderBy('id')
-        ->get()
-        ->groupBy('course');
+            ->orderBy('id')
+            ->get()
+            ->groupBy('course');
 
-        return view('exercise.index', compact('exercises'));
+        $completed = auth()->check()
+            ? auth()->user()->exercises->pluck('id')->toArray()
+            : [];
+
+        return view('exercise.index', compact('exercises', 'completed'));
     }
 
     public function show($id)
@@ -86,6 +90,11 @@ class ExerciseController extends Controller
         $userArray = json_decode(json_encode($userResult), true);
         $expectedArray = json_decode($exercise->expected_result, true);
         $correct = ($userArray == $expectedArray);
+
+        //Aquí mete en la tabla usuarios - ejercicios el ejercicio como completado para el usuario
+        if ($correct && auth()->check()) {
+            auth()->user()->exercises()->syncWithoutDetaching([$id]);
+        }
 
         return response()->json([
             'correct' => $correct,

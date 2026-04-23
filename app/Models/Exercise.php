@@ -14,4 +14,10 @@ class Exercise extends Model
         'expected_sql',
         'expected_result'
     ];
+
+
+    public function users(){
+        
+        return $this->belongsToMany(\App\Models\User::class)->withTimestamps();
+    }
 }

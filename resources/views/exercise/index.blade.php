@@ -13,7 +13,11 @@
                 
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">Ejercicio {{ $exercise->id }}</h5>
-                    <small>Sin completar</small>
+                    @if(in_array($exercise->id, $completed))
+                        <small class="text-success">Completado</small>
+                    @else
+                        <small>Sin completar</small>
+                    @endif
                 </div>
 
                 <p class="mb-1">{{ $exercise->subtitle }}</p>
