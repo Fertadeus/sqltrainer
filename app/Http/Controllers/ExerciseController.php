@@ -53,7 +53,11 @@ class ExerciseController extends Controller
 
         $exercise = Exercise::findOrFail($id);
 
-        \Log::info('QUERY RECIBIDA:', ['query' => $request->input('query')]);
+        \Log::info('QUERY RECIBIDA:', 
+            [
+                'query' => $request->input('query'),
+                'user_id' => auth()->id()               
+            ]);
         $query = $request->input('query');
 
         if (is_array($query) && isset($query['query'])) {
