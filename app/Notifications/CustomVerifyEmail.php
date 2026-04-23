@@ -45,7 +45,8 @@ class CustomVerifyEmail extends Notification
             ->line('Gracias por registrarte en eSQLa.')
             ->line('Haz clic en el botón para verificar tu cuenta.')
             ->action('Verificar email', $verificationUrl)
-            ->line('Si no has creado esta cuenta, ignora este mensaje.');
+            ->line('Si no has creado esta cuenta, ignora este mensaje.')
+            ->salutation('Un saludo, eSQLa');
     }
 
     /**
