@@ -41,13 +41,13 @@
                             <a class="nav-link" href="{{ url('/ejercicio') }}">Ejercicios</a>
                         </li>
 
-                        <li class="nav-item px-2">
-                            <a href="#" class="nav-link"
-                            onclick="event.preventDefault(); this.closest('form').submit();">
+                       <li class="nav-item px-2">
+                            <a href="#" class="nav-link d-flex align-items-center"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout
                             </a>
 
-                            <form method="POST" action="{{ route('logout') }}" class="d-none">
+                            <form id="logout-form" method="POST" action="{{ route('logout') }}" class="d-none">
                                 @csrf
                             </form>
                         </li>
