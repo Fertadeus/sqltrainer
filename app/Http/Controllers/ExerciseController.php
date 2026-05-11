@@ -125,42 +125,43 @@ class ExerciseController extends Controller
     /*Vista del modo libre*/
     public function free()
     {
-        return view('exercise.free');
+        return view('exercise.show', [
+            'exercise' => null,
+            'freeMode' => true
+        ]);
     }
-
     /*Ejecutar query en modo libre -> este va sin comprobación de que el ejercicio está bien*/
 
     public function runFree(Request $request)
     {
-    $query = $request->input('query');
+        $query = $request->input('query');
 
-    if (is_array($query) && isset($query['query'])) {
-        $query = $query['query'];
+        if (is_array($query) && isset($query['query'])) {
+            $query = $query['query'];
+        }
+
+        $query = trim((string) $query);
+
+        if (!str_starts_with(strtolower($query), 'select')) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Solo se permiten consultas SELECT'
+            ]);
+        }
+
+        try {
+            $result = \DB::select($query);
+
+            return response()->json([
+                'success' => true,
+                'result' => $result
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => 'La consulta SQL no está escrita correctamente'
+            ]);
+        }
     }
-
-    $query = trim((string) $query);
-
-    // Seguridad básica
-    if (!str_starts_with(strtolower($query), 'select')) {
-        return response()->json([
-            'success' => false,
-            'error' => 'Solo se permiten consultas SELECT'
-        ]);
-    }
-
-    try {
-        $result = \DB::select($query);
-
-        return response()->json([
-            'success' => true,
-            'result' => $result
-        ]);
-
-    } catch (\Exception $e) {
-        return response()->json([
-            'success' => false,
-            'error' => $e->getMessage()
-        ]);
-    }
-}
 }

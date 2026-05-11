@@ -3,15 +3,20 @@
 @section('content')
 <div class="container mt-4">
 
-    <h1 class="mb-4 text-center mb-5">Ejercicio {{ $exercise->id }}</h1>
-
-    <p class="mb-5" style="text-align:justify;">{!! $exercise->description !!}</p>
+    @if(!$freeMode)
+        <p class="mb-5" style="text-align:justify;">{!! $exercise->description !!}</p>
+    @endif
+    
 
     <h4 class="mt-4">Tu consulta SQL</h4>
     <textarea id="sql" class="form-control" rows="6" placeholder="Escribe aquí tu consulta SELECT..."></textarea>
 
     <button id="runQuery" class="btn btn-primary mt-3 mb-5">Comprobar</button>
-    <button id="showSolution" class="btn btn-success mt-3 mb-5">Mostrar solución</button>
+
+    @if(!$freeMode)
+       <button id="showSolution" class="btn btn-success mt-3 mb-5">Mostrar solución</button>
+    @endif
+    
     
 
     <h4 class="mt-2">Resultado</h4>
@@ -34,7 +39,7 @@
 
 <!--ALERTA SI SE COMPLETA BIEN EL ENUNCIADO-->
 
-@if($nextExercise)
+@if(!@json($freeMode ?? false) && $nextExercise)
     <div class="modal fade" id="alerta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -86,7 +91,15 @@ document.getElementById('runQuery').addEventListener('click', function () {
         - Si el data viene con el correct == true, te muestra una alerta de que lo has hecho bien
     */
 
-    fetch('{{ route('exercise.run', $exercise->id) }}', {
+    let url = '';
+
+    @if(isset($freeMode) && $freeMode)
+        url = "{{ route('free.run') }}";
+    @else
+        url = "/ejercicio/{{ $exercise->id }}/run";
+    @endif
+
+    fetch(url, {
         method: 'POST',
         body: JSON.stringify({ query: sql }),
         headers: {
@@ -218,7 +231,7 @@ toggle.addEventListener('click', () => {
 document.addEventListener('click', function (event) {
     const isClickInsideDrawer = drawer.contains(event.target);
     const isClickOnToggle = toggle.contains(event.target);
-    const isClickOnSQL = sqlBox.contains(event.target);
+    const isClickOnSQL = sql.contains(event.target);
 
     if (!isClickInsideDrawer && !isClickOnToggle && !isClickOnSQL) {
         drawer.classList.remove('open');
