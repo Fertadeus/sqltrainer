@@ -14,7 +14,7 @@
         }
 
         #tabToggle {
-            #tabToggle {
+            
             position: fixed;
             right: 0;
             top: 40%;
@@ -27,7 +27,7 @@
 
             writing-mode: vertical-rl;
             text-orientation: mixed;
-        }
+        
         }
 
         #tablesDrawer {
