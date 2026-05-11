@@ -25,10 +25,12 @@
             border-radius: 8px 0 0 8px;
             z-index: 1000;
 
-            writing-mode: vertical-rl;
+        
+        }
+        #tabText{
+           writing-mode: vertical-rl;
             text-orientation: mixed;
             transform: rotate(180deg);
-        
         }
 
         #tablesDrawer {

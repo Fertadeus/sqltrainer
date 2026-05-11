@@ -21,7 +21,9 @@
 
 
     <!-- Pestaña lateral -->
-    <div id="tabToggle">Mostrar tablas</div>
+    <div id="tabToggle">
+         <span id="tabText">Mostrar tablas</span>
+    </div>
 
     <!-- Panel lateral -->
     <div id="tablesDrawer">
