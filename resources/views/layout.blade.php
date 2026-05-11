@@ -84,7 +84,7 @@
                             <a class="nav-link" href="{{ route('free') }}">Modo libre</a>
                         </li>
                        <li class="nav-item px-2">
-                            <a href="#" class="nav-link d-flex align-items-center"
+                            <a href="#" class="nav-link"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout
                             </a>
