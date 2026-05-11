@@ -186,8 +186,11 @@ document.getElementById('runQuery').addEventListener('click', function () {
 
 */
 document.getElementById('showSolution').addEventListener('click', function () {
-
-    document.getElementById("sql").value = @json($exercise->expected_sql);
+    @if(isset($freeMode) && $freeMode)
+       
+    @else
+        document.getElementById("sql").value = @json($exercise->expected_sql);
+    @endif
 })
 
 
