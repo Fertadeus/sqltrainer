@@ -110,15 +110,57 @@ class ExerciseController extends Controller
     /*Devuelve un json con las tablas y sus columnas, escritas manualmente por mí*/
 
     public function getTables()
-{
-    $tables = [
-        'games' => ['id', 'title', 'genre', 'release_year', 'rating'],
-        'developers' => ['id', 'name', 'country'],
-        'platforms' => ['id', 'name'],
-        'game_developer' => ['game_id', 'developer_id'],
-        'game_platform' => ['game_id', 'platform_id'],
-    ];
+    {
+        $tables = [
+            'games' => ['id', 'title', 'genre', 'release_year', 'rating'],
+            'developers' => ['id', 'name', 'country'],
+            'platforms' => ['id', 'name'],
+            'game_developer' => ['game_id', 'developer_id'],
+            'game_platform' => ['game_id', 'platform_id'],
+        ];
 
-    return response()->json($tables);
+        return response()->json($tables);
+    }
+
+    /*Vista del modo libre*/
+    public function free()
+    {
+        return view('exercise.free');
+    }
+
+    /*Ejecutar query en modo libre -> este va sin comprobación de que el ejercicio está bien*/
+
+    public function runFree(Request $request)
+    {
+    $query = $request->input('query');
+
+    if (is_array($query) && isset($query['query'])) {
+        $query = $query['query'];
+    }
+
+    $query = trim((string) $query);
+
+    // Seguridad básica
+    if (!str_starts_with(strtolower($query), 'select')) {
+        return response()->json([
+            'success' => false,
+            'error' => 'Solo se permiten consultas SELECT'
+        ]);
+    }
+
+    try {
+        $result = \DB::select($query);
+
+        return response()->json([
+            'success' => true,
+            'result' => $result
+        ]);
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'error' => $e->getMessage()
+        ]);
+    }
 }
 }

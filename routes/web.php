@@ -19,6 +19,8 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
+    Route::get('/libre', [ExerciseController::class, 'free'])->name('free');
+    Route::post('/libre/run', [ExerciseController::class, 'runFree'])->name('free.run');
     Route::get('/tables', [ExerciseController::class, 'getTables']);
     Route::get('/ejercicio', [ExerciseController::class, 'index']);
     Route::get('/ejercicio/{id}', [ExerciseController::class, 'show'])->name('exercise.show');
