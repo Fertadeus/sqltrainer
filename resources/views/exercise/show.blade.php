@@ -39,7 +39,7 @@
 
 <!--ALERTA SI SE COMPLETA BIEN EL ENUNCIADO-->
 
-@if(!@json($freeMode ?? false) && $nextExercise)
+@if(($freeMode ?? false) && $nextExercise)
     <div class="modal fade" id="alerta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
