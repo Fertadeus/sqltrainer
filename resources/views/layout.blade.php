@@ -14,15 +14,20 @@
         }
 
         #tabToggle {
+            #tabToggle {
             position: fixed;
             right: 0;
             top: 40%;
             background: #0d6efd;
             color: white;
-            padding: 10px;
+            padding: 10px 6px;
             cursor: pointer;
             border-radius: 8px 0 0 8px;
             z-index: 1000;
+
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
         }
 
         #tablesDrawer {
