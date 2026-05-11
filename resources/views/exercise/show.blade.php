@@ -234,7 +234,7 @@ toggle.addEventListener('click', () => {
 document.addEventListener('click', function (event) {
     const isClickInsideDrawer = drawer.contains(event.target);
     const isClickOnToggle = toggle.contains(event.target);
-    const isClickOnSQL = sql.contains(event.target);
+    const isClickOnSQL = document.getElementById('sql').contains(event.target);
 
     if (!isClickInsideDrawer && !isClickOnToggle && !isClickOnSQL) {
         drawer.classList.remove('open');
