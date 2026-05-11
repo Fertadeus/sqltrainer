@@ -19,7 +19,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-
+    Route::get('/tables', [ExerciseController::class, 'getTables']);
     Route::get('/ejercicio', [ExerciseController::class, 'index']);
     Route::get('/ejercicio/{id}', [ExerciseController::class, 'show'])->name('exercise.show');
     Route::post('/ejercicio/{id}/run', [ExerciseController::class, 'runQuery'])->name('exercise.run');

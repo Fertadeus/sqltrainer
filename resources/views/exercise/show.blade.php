@@ -12,6 +12,9 @@
 
     <button id="runQuery" class="btn btn-primary mt-3 mb-5">Comprobar</button>
     <button id="showSolution" class="btn btn-success mt-3 mb-5">Mostrar solución</button>
+    <button id="toggleTables" class="btn btn-secondary mt-3">Mostrar tablas</button>
+
+    <div id="tablesBox" class="mt-3" style="display:none;"></div>
 
     <h4 class="mt-2">Resultado</h4>
     <div id="resultBox" class="border rounded p-3 bg-light" style="min-height: 120px;">
@@ -164,5 +167,47 @@ document.getElementById('showSolution').addEventListener('click', function () {
     document.getElementById("sql").value = @json($exercise->expected_sql);
 })
 
+
+/*
+        BOTÓN MOSTRAR TABLAS
+
+*/
+
+document.getElementById('toggleTables').addEventListener('click', function () {
+    const box = document.getElementById('tablesBox');
+
+    // toggle
+    if (box.style.display === 'none') {
+        box.style.display = 'block';
+    } else {
+        box.style.display = 'none';
+        return;
+    }
+
+    // evitar recargar siempre
+    if (box.innerHTML !== '') return;
+
+    fetch('/tables')
+        .then(res => res.json())
+        .then(data => {
+
+            let html = '';
+
+            for (const table in data) {
+                html += `
+                    <div class="card mb-2">
+                        <div class="card-header fw-bold">
+                            ${table}
+                        </div>
+                        <div class="card-body">
+                            ${data[table].map(col => `<span class="badge bg-primary me-1">${col}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            box.innerHTML = html;
+        });
+});
 </script>
 @endsection

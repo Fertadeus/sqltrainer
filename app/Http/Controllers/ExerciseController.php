@@ -107,5 +107,18 @@ class ExerciseController extends Controller
     }
 
 
+    /*Devuelve un json con las tablas y sus columnas, escritas manualmente por mí*/
 
+    public function getTables()
+{
+    $tables = [
+        'games' => ['id', 'title', 'genre', 'release_year', 'rating'],
+        'developers' => ['id', 'name', 'country'],
+        'platforms' => ['id', 'name'],
+        'game_developer' => ['game_id', 'developer_id'],
+        'game_platform' => ['game_id', 'platform_id'],
+    ];
+
+    return response()->json($tables);
+}
 }
