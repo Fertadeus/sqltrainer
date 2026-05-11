@@ -185,13 +185,18 @@ document.getElementById('runQuery').addEventListener('click', function () {
         BOTÓN MOSTRAR SOLUCIÓN
 
 */
-document.getElementById('showSolution').addEventListener('click', function () {
-    @if(isset($freeMode) && $freeMode)
-       
-    @else
-        document.getElementById("sql").value = @json($exercise->expected_sql);
-    @endif
-})
+
+const showBtn = document.getElementById('showSolution');
+if (showBtn) {
+    showBtn.addEventListener('click', function () {
+        @if(isset($freeMode) && $freeMode)
+        @else
+            document.getElementById("sql").value = @json($exercise->expected_sql);
+        @endif
+    });
+}
+
+
 
 
 /*
