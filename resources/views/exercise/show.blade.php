@@ -212,5 +212,19 @@ toggle.addEventListener('click', () => {
             });
     }
 });
+ //Para cerrar el boton mostrar tabla si haces click fuera
+document.addEventListener('click', function (event) {
+    const isClickInsideDrawer = drawer.contains(event.target);
+    const isClickOnToggle = toggle.contains(event.target);
+
+    if (!isClickInsideDrawer && !isClickOnToggle) {
+        drawer.classList.remove('open');
+    }
+});
+
+
+overlay.classList.toggle('show');
+
+
 </script>
 @endsection
