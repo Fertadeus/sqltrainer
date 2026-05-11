@@ -4,7 +4,7 @@
 <div class="container mt-4">
 
     @if(!($freeMode ?? false))
-        <p class="mb-5" style="text-align:justify;">{!! $exercise->description !!}</p>
+        <p class="mt-5 mb-5" style="text-align:justify;">{!! $exercise->description !!}</p>
     @endif
     
 
