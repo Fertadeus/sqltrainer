@@ -64,7 +64,7 @@
 </head>
 <body>
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 rounded-bottom-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 rounded-bottom-4">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">eSQLa</a>
 
