@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-4">
 
-    @if(!$freeMode)
+    @if(!($freeMode ?? false))
         <p class="mb-5" style="text-align:justify;">{!! $exercise->description !!}</p>
     @endif
     
@@ -13,7 +13,7 @@
 
     <button id="runQuery" class="btn btn-primary mt-3 mb-5">Comprobar</button>
 
-    @if(!$freeMode)
+    @if(!($freeMode ?? false))
        <button id="showSolution" class="btn btn-success mt-3 mb-5">Mostrar solución</button>
     @endif
     
