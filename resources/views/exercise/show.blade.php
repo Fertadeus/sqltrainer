@@ -21,7 +21,7 @@
 
 
     <!-- Pestaña lateral -->
-    <div id="tabToggle">Tablas</div>
+    <div id="tabToggle">Mostrar tablas</div>
 
     <!-- Panel lateral -->
     <div id="tablesDrawer">
@@ -216,8 +216,9 @@ toggle.addEventListener('click', () => {
 document.addEventListener('click', function (event) {
     const isClickInsideDrawer = drawer.contains(event.target);
     const isClickOnToggle = toggle.contains(event.target);
+    const isClickOnSQL = sqlBox.contains(event.target);
 
-    if (!isClickInsideDrawer && !isClickOnToggle) {
+    if (!isClickInsideDrawer && !isClickOnToggle && !isClickOnSQL) {
         drawer.classList.remove('open');
     }
 });
