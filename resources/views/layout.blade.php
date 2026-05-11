@@ -12,6 +12,35 @@
             margin-left: 3px;
             margin-right: 3px;
         }
+
+        #tabToggle {
+            position: fixed;
+            right: 0;
+            top: 40%;
+            background: #0d6efd;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 8px 0 0 8px;
+            z-index: 1000;
+        }
+
+        #tablesDrawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+            transition: right 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+
+        #tablesDrawer.open {
+            right: 0;
+        }
     </style>
     <!-- Bootstrap CSS -->
     <link 
