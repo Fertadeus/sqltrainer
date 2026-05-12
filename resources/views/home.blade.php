@@ -6,14 +6,47 @@
 
     @auth
 
-        <div class="p-4 bg-white rounded shadow-sm text-center">
-            <h2>Bienvenido, {{ $user->name }}</h2>
+        <h2 class="text-center mb-4">Bienvenido, {{ $user->name }}</h2>
 
-            <form method="POST" action="{{ route('logout') }}" class="mt-3">
-                @csrf
-                <button class="btn btn-outline-danger">Cerrar sesión</button>
-            </form>
+        <div class="row g-4">
+
+        <!-- LOGOUT -->
+        <div class="col-12 col-md-4">
+            <div class="p-4 bg-white rounded shadow-sm text-center h-100">
+                <h5>Sesión</h5>
+
+                <form method="POST" action="{{ route('logout') }}" class="mt-3">
+                    @csrf
+                    <button class="btn btn-outline-danger">Cerrar sesión</button>
+                </form>
+            </div>
         </div>
+
+        <!-- EJERCICIOS -->
+        <div class="col-12 col-md-4">
+            <div class="p-4 bg-white rounded shadow-sm text-center h-100">
+                <h5>Ejercicios</h5>
+                <p>Practica SQL con ejercicios guiados.</p>
+
+                <a href="{{ url('/ejercicio') }}" class="btn btn-primary">
+                    Ir a ejercicios
+                </a>
+            </div>
+        </div>
+
+        <!-- MODO LIBRE -->
+        <div class="col-12 col-md-4">
+            <div class="p-4 bg-white rounded shadow-sm text-center h-100">
+                <h5>Modo libre</h5>
+                <p>Haz consultas SQL sin restricciones.</p>
+
+                <a href="{{ route('free') }}" class="btn btn-success">
+                    Ir a modo libre
+                </a>
+            </div>
+        </div>
+
+    </div>
 
     @else
 
