@@ -179,7 +179,7 @@ document.getElementById('runQuery').addEventListener('click', function () {
 
                 const btn = document.createElement('a');
                 btn.id = 'nextExerciseBtn';
-                btn.className = 'btn btn-success ms-2 mb-5';
+                btn.className = 'btn btn-info mt-3 mb-5';
                 btn.innerText = 'Siguiente ejercicio';
 
                 @if(!($freeMode ?? false))
