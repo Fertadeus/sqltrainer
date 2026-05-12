@@ -64,10 +64,11 @@
 </head>
 <body>
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 rounded-bottom-4">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">eSQLa</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 rounded-bottom-4">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url('/') }}">eSQLa</a>
 
+        @auth
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -75,30 +76,31 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto text-lg-start text-end">
 
-                    @auth
-                        <li class="nav-item px-2">
-                            <a class="nav-link" href="{{ url('/ejercicio') }}">Ejercicios</a>
-                        </li>
+                    <li class="nav-item px-2">
+                        <a class="nav-link" href="{{ url('/ejercicio') }}">Ejercicios</a>
+                    </li>
 
-                        <li class="nav-item px-2">
-                            <a class="nav-link" href="{{ route('free') }}">Modo libre</a>
-                        </li>
-                       <li class="nav-item px-2">
-                            <a href="#" class="nav-link"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Logout
-                            </a>
+                    <li class="nav-item px-2">
+                        <a class="nav-link" href="{{ route('free') }}">Modo libre</a>
+                    </li>
 
-                            <form id="logout-form" method="POST" action="{{ route('logout') }}" class="d-none">
-                                @csrf
-                            </form>
-                        </li>
-                    @endauth
+                    <li class="nav-item px-2">
+                        <a href="#" class="nav-link"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+
+                        <form id="logout-form" method="POST" action="{{ route('logout') }}" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
 
                 </ul>
             </div>
-        </div>
-    </nav>
+        @endauth
+
+    </div>
+</nav>
 
     <!-- CONTENIDO -->
     <div class="container">

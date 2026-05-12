@@ -10,23 +10,11 @@
 
         <div class="row g-4">
 
-        <!-- LOGOUT -->
-        <div class="col-12 col-md-4">
-            <div class="p-4 bg-white rounded shadow-sm text-center h-100">
-                <h5>Sesión</h5>
-
-                <form method="POST" action="{{ route('logout') }}" class="mt-3">
-                    @csrf
-                    <button class="btn btn-outline-danger">Cerrar sesión</button>
-                </form>
-            </div>
-        </div>
-
         <!-- EJERCICIOS -->
         <div class="col-12 col-md-4">
             <div class="p-4 bg-white rounded shadow-sm text-center h-100">
                 <h5>Ejercicios</h5>
-                <p>Practica SQL con ejercicios guiados.</p>
+                <p>Practica SQL mediante ejercicios guiados.</p>
 
                 <a href="{{ url('/ejercicio') }}" class="btn btn-primary">
                     Ir a ejercicios
@@ -38,7 +26,7 @@
         <div class="col-12 col-md-4">
             <div class="p-4 bg-white rounded shadow-sm text-center h-100">
                 <h5>Modo libre</h5>
-                <p>Haz consultas SQL sin restricciones.</p>
+                <p>Realiza consultas SQL sin restricciones.</p>
 
                 <a href="{{ route('free') }}" class="btn btn-success">
                     Ir a modo libre
@@ -46,6 +34,19 @@
             </div>
         </div>
 
+        
+        <!-- LOGOUT -->
+        <div class="col-12 col-md-4">
+            <div class="p-4 bg-white rounded shadow-sm text-center h-100">
+                <h5>Sesión</h5>
+                <p>¿Quieres salir de tu cuenta?</p>
+
+                <form method="POST" action="{{ route('logout') }}" class="mt-3">
+                    @csrf
+                    <button class="btn btn-outline-danger">Cerrar sesión</button>
+                </form>
+            </div>
+        </div>
     </div>
 
     @else
