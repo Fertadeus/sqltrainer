@@ -21,13 +21,13 @@
             <!-- TOKEN -->
             <input type="hidden" name="token" value="{{ request()->route('token') }}">
 
-            <!-- EMAIL -->
+            <!-- EMAIL (bloqueado) -->
             <input 
                 type="email" 
                 name="email" 
                 class="form-control mb-3" 
                 value="{{ request()->email }}" 
-                required
+                readonly
             >
 
             <!-- PASSWORD -->
