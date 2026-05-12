@@ -17,7 +17,7 @@
        <button id="showSolution" class="btn btn-success mt-3 mb-5">Mostrar solución</button>
     @endif
     
-    
+    <div id="nextBtnContainer" class="d-inline"></div>
 
     <h4 class="mt-2">Resultado</h4>
     <div id="resultBox" class="border rounded p-3 bg-light" style="min-height: 120px;">
@@ -171,6 +171,23 @@ document.getElementById('runQuery').addEventListener('click', function () {
 
             alerta.toggle();
 
+            // BOTÓN SIGUIENTE
+            const container = document.getElementById('nextBtnContainer');
+
+            // evitar duplicados
+            if (!document.getElementById('nextExerciseBtn')) {
+
+                const btn = document.createElement('a');
+                btn.id = 'nextExerciseBtn';
+                btn.className = 'btn btn-success ms-2 mb-5';
+                btn.innerText = 'Siguiente ejercicio';
+
+                @if(!($freeMode ?? false))
+                    btn.href = "/ejercicio/{{ $exercise->id + 1 }}";
+                @endif
+
+                container.appendChild(btn);
+            }
         }
     })
     .catch(error => {
