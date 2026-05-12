@@ -6,38 +6,58 @@
 
     <div class="p-4 bg-white rounded shadow-sm">
 
-        <h3 class="mb-3 text-center">Recuperar contraseña</h3>
+        <h3 class="mb-3 text-center">Nueva contraseña</h3>
 
         <p class="text-muted text-center">
-            Introduce tu email y te enviaremos un enlace para restablecer tu contraseña.
+            Introduce tu nueva contraseña.
         </p>
 
-        @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
-
-        <form method="POST" action="{{ route('password.email') }}">
+        <form method="POST" action="{{ route('password.update') }}">
             @csrf
 
+            <!-- Token oculto -->
+            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
+            <!-- Email -->
             <input 
                 type="email" 
                 name="email" 
                 class="form-control mb-2" 
                 placeholder="Email" 
+                value="{{ old('email', $request->email) }}"
                 required
             >
 
             @error('email')
-                <div class="text-danger mb-2">
-                    {{ $message }}
-                </div>
+                <div class="text-danger mb-2">{{ $message }}</div>
             @enderror
 
-            <button class="btn btn-primary w-100">
-                Enviar enlace
+            <!-- Password -->
+            <input 
+                type="password" 
+                name="password" 
+                class="form-control mb-2" 
+                placeholder="Nueva contraseña" 
+                required
+            >
+
+            @error('password')
+                <div class="text-danger mb-2">{{ $message }}</div>
+            @enderror
+
+            <!-- Confirmación -->
+            <input 
+                type="password" 
+                name="password_confirmation" 
+                class="form-control mb-2" 
+                placeholder="Confirmar contraseña" 
+                required
+            >
+
+            <button class="btn btn-primary w-100 mt-2">
+                Restablecer contraseña
             </button>
+
         </form>
 
         <div class="mt-3 text-center">
