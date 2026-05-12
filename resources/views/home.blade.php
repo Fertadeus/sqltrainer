@@ -62,6 +62,9 @@
                 <input type="password" name="password" class="form-control mb-2" placeholder="Contraseña" required>
 
                 <button class="btn btn-primary w-100">Entrar</button>
+                <div class="mt-3 text-center">
+                    <a href="{{ route('password.request') }}">¿Olvidaste tu contraseña?</a>
+                </div>
             </form>
 
             <div class="mt-3 text-center">

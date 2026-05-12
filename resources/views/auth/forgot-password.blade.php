@@ -1,25 +1,51 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+@extends('layout')
+
+@section('content')
+
+<div class="container mt-5" style="max-width: 500px;">
+
+    <div class="p-4 bg-white rounded shadow-sm">
+
+        <h3 class="mb-3 text-center">Recuperar contraseña</h3>
+
+        <p class="text-muted text-center">
+            Introduce tu email y te enviaremos un enlace para restablecer tu contraseña.
+        </p>
+
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
+        <form method="POST" action="{{ route('password.email') }}">
+            @csrf
+
+            <input 
+                type="email" 
+                name="email" 
+                class="form-control mb-2" 
+                placeholder="Email" 
+                required
+            >
+
+            @error('email')
+                <div class="text-danger mb-2">
+                    {{ $message }}
+                </div>
+            @enderror
+
+            <button class="btn btn-primary w-100">
+                Enviar enlace
+            </button>
+        </form>
+
+        <div class="mt-3 text-center">
+            <a href="{{ route('login') }}">Volver al login</a>
+        </div>
+
     </div>
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+</div>
 
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+@endsection
