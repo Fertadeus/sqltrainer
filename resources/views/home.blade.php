@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container mt-5" style="max-width: 500px;">
+<div class="container mt-5">
 
     @auth
 
