@@ -24,7 +24,7 @@
                 name="email" 
                 class="form-control mb-2" 
                 placeholder="Email" 
-                value="{{ old('email', $request->email) }}"
+                value="{{ $request->email }}"
                 required
             >
 
