@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -39,6 +38,11 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the attributes that should be cast.
      *
+     * El cast 'hashed' hace que cualquier valor que asignes al campo
+     * 'password' se hashee automáticamente al guardarlo.
+     * Por eso NO debe existir además un setPasswordAttribute() manual:
+     * provocaría un doble hash y los logins fallarían siempre.
+     *
      * @return array<string, string>
      */
     protected function casts(): array
@@ -57,10 +61,5 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendEmailVerificationNotification()
     {
         $this->notify(new CustomVerifyEmail());
-    }
-
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = Hash::make($value);
     }
 }
