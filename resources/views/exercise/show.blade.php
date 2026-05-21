@@ -14,7 +14,7 @@
     <button id="runQuery" class="btn btn-primary mt-3 mb-5">Comprobar</button>
 
     @if(!($freeMode ?? false))
-       <button id="showSolution" class="btn btn-warning mt-3 mb-5">Mostrar solución</button>
+       <button id="showSolution" class="btn btn-success mt-3 mb-5">Mostrar solución</button>
     @endif
     
     <div id="nextBtnContainer" class="d-inline"></div>
