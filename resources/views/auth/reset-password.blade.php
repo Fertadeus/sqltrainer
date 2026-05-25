@@ -1,3 +1,4 @@
+{{-- reset-password.blade.php --}}
 @extends('layout')
 
 @section('content')
@@ -10,57 +11,47 @@
 
             <div class="text-center mb-4">
                 <div style="font-family:var(--font-mono); font-size:1.8rem; font-weight:700; color:var(--accent); letter-spacing:-1px;">&gt; eSQLa</div>
-                <p style="color:var(--text-muted); font-size:0.82rem; margin-top:0.3rem;">Crea tu cuenta</p>
             </div>
 
-            <p class="section-title">registro</p>
+            <p class="section-title">nueva contraseña</p>
 
-            <form method="POST" action="{{ route('register') }}">
+            @if ($errors->any())
+                <div class="alert alert-danger mb-3">
+                    <ul class="mb-0" style="padding-left:1rem;">
+                        @foreach ($errors->all() as $error)
+                            <li style="font-size:0.85rem;">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('password.store') }}">
                 @csrf
 
-                <div class="mb-3">
-                    <label class="form-label">Nombre</label>
-                    <input
-                        type="text"
-                        name="name"
-                        class="form-control @error('name') is-invalid @enderror"
-                        value="{{ old('name') }}"
-                        placeholder="Tu nombre"
-                        required
-                        autofocus
-                    >
-                    @error('name')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
+                <input type="hidden" name="token" value="{{ request()->route('token') }}">
 
                 <div class="mb-3">
                     <label class="form-label">Email</label>
                     <input
                         type="email"
                         name="email"
-                        class="form-control @error('email') is-invalid @enderror"
-                        value="{{ old('email') }}"
-                        placeholder="tu@email.com"
-                        required
+                        class="form-control"
+                        value="{{ old('email', request()->email) }}"
+                        readonly
+                        style="opacity:0.6; cursor:not-allowed;"
                     >
-                    @error('email')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Contraseña</label>
+                    <label class="form-label">Nueva contraseña</label>
                     <input
                         type="password"
                         name="password"
-                        class="form-control @error('password') is-invalid @enderror"
+                        class="form-control"
                         placeholder="••••••••"
                         required
+                        autocomplete="new-password"
                     >
-                    @error('password')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
                 </div>
 
                 <div class="mb-4">
@@ -68,24 +59,15 @@
                     <input
                         type="password"
                         name="password_confirmation"
-                        class="form-control @error('password_confirmation') is-invalid @enderror"
+                        class="form-control"
                         placeholder="••••••••"
                         required
+                        autocomplete="new-password"
                     >
-                    @error('password_confirmation')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
                 </div>
 
-                <button type="submit" class="btn-accent w-100" style="text-align:center;">Crear cuenta</button>
+                <button type="submit" class="btn-accent w-100" style="text-align:center;">Restablecer contraseña</button>
             </form>
-
-            <hr style="border-color:var(--border); margin:1.5rem 0;">
-
-            <div class="text-center" style="font-size:0.85rem; color:var(--text-secondary);">
-                ¿Ya tienes cuenta?&nbsp;
-                <a href="{{ route('login') }}">Inicia sesión</a>
-            </div>
 
         </div>
 
