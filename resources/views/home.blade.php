@@ -10,7 +10,6 @@
 
         <!-- WELCOME HEADER -->
         <div class="mb-5" style="animation-delay:0.05s">
-            <p class="section-title">panel principal</p>
             <h1 style="font-family: var(--font-mono); font-size: clamp(1.6rem,4vw,2.4rem); font-weight:700; color: var(--text-primary); margin-bottom:0.25rem;">
                 Hola, <span style="color:var(--accent)">{{ $user->name }}</span>
             </h1>
@@ -25,15 +24,13 @@
             <!-- EJERCICIOS -->
             <div class="col-12 col-md-4">
                 <div class="esqla-card h-100 d-flex flex-column" style="border-top: 3px solid var(--accent);">
-                    <div class="mb-3">
-                        <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1.2px;">01 /</span>
-                    </div>
+                   
                     <h5 style="font-family:var(--font-mono); font-weight:700; color:var(--text-primary); margin-bottom:0.5rem;">Ejercicios</h5>
-                    <p style="color:var(--text-secondary); font-size:0.875rem; flex:1;">
+                    <p class="mt-3" style="color:var(--text-secondary); font-size:0.875rem; flex:1;">
                         Practica SQL paso a paso con ejercicios guiados y comprueba tus respuestas al instante.
                     </p>
                     <div class="mt-3">
-                        <a href="{{ url('/ejercicio') }}" class="btn-accent">Ir a ejercicios →</a>
+                        <a href="{{ url('/ejercicio') }}" class="btn-accent">Ir a ejercicios</a>
                     </div>
                 </div>
             </div>
@@ -41,15 +38,13 @@
             <!-- MODO LIBRE -->
             <div class="col-12 col-md-4">
                 <div class="esqla-card h-100 d-flex flex-column" style="border-top: 3px solid var(--accent-yellow);">
-                    <div class="mb-3">
-                        <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1.2px;">02 /</span>
-                    </div>
+
                     <h5 style="font-family:var(--font-mono); font-weight:700; color:var(--text-primary); margin-bottom:0.5rem;">Modo libre</h5>
-                    <p style="color:var(--text-secondary); font-size:0.875rem; flex:1;">
-                        Lanza consultas SQL sin restricciones. Explora, experimenta y descubre sin guía.
+                    <p class="mt-3" style="color:var(--text-secondary); font-size:0.875rem; flex:1;">
+                        Lanza consultas SQL sin restricciones. ¡Ideal para experimentar!
                     </p>
                     <div class="mt-3">
-                        <a href="{{ route('free') }}" class="btn-outline-accent">Ir a modo libre →</a>
+                        <a href="{{ route('free') }}" class="btn-outline-accent">Ir a modo libre</a>
                     </div>
                 </div>
             </div>
@@ -57,11 +52,9 @@
             <!-- SESIÓN -->
             <div class="col-12 col-md-4">
                 <div class="esqla-card h-100 d-flex flex-column" style="border-top: 3px solid var(--accent-red);">
-                    <div class="mb-3">
-                        <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1.2px;">03 /</span>
-                    </div>
+
                     <h5 style="font-family:var(--font-mono); font-weight:700; color:var(--text-primary); margin-bottom:0.5rem;">Sesión</h5>
-                    <p style="color:var(--text-secondary); font-size:0.875rem; flex:1;">
+                    <p class="mt-3" style="color:var(--text-secondary); font-size:0.875rem; flex:1;">
                         ¿Quieres cerrar tu sesión actual? Puedes volver cuando quieras.
                     </p>
                     <div class="mt-3">

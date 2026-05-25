@@ -7,9 +7,8 @@
     <div class="col-12 col-lg-9">
 
         <div class="mb-4" style="animation-delay:0.05s">
-            <p class="section-title">lista de ejercicios</p>
             <h2 style="font-family:var(--font-mono); font-weight:700; font-size:clamp(1.3rem,3vw,1.8rem); color:var(--text-primary);">
-                Ejercicios SQL
+                Lista de ejercicios
             </h2>
         </div>
 
@@ -29,10 +28,7 @@
                                  onmouseout="this.style.borderColor='var(--border)'; this.style.transform=''; this.style.boxShadow='';">
 
                                 <div class="d-flex align-items-center gap-3">
-                                    <!-- ID badge -->
-                                    <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); min-width:36px;">
-                                        #{{ str_pad($exercise->id, 2, '0', STR_PAD_LEFT) }}
-                                    </span>
+                                    
 
                                     <div>
                                         <div style="font-family:var(--font-mono); font-size:0.9rem; font-weight:700; color:var(--text-primary); margin-bottom:2px;">
@@ -55,7 +51,7 @@
                                         </span>
                                     @endif
 
-                                    <span style="color:var(--text-muted); font-size:1rem;">→</span>
+                                    
                                 </div>
 
                             </div>
