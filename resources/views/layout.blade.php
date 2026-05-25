@@ -166,8 +166,8 @@
 
         .btn-outline-accent {
             background: transparent;
-            color: var(--accent);
-            border: 1px solid var(--accent);
+            color: var(--accent-yellow);
+            border: 1px solid var(--accent-yellow);
             font-family: var(--font-mono);
             font-size: 0.8rem;
             font-weight: 700;
@@ -180,9 +180,9 @@
         }
 
         .btn-outline-accent:hover {
-            background: var(--accent-glow);
-            box-shadow: 0 0 12px var(--accent-glow);
-            color: var(--accent);
+            background: rgba(231, 255, 95, 0.1);
+            box-shadow: 0 0 12px rgba(244, 255, 95, 0.1);
+            color: var(--accent-yellow);
         }
 
         .btn-danger-soft {

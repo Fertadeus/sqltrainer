@@ -39,7 +39,7 @@
                     id="sql"
                     class="form-control"
                     rows="7"
-                    placeholder="-- Escribe aquí tu consulta SELECT..."
+                    placeholder="Escribe aquí tu consulta SELECT..."
                     style="border-radius:0 0 var(--radius) var(--radius); border-top:none;"
                 ></textarea>
 
@@ -63,7 +63,7 @@
 
                 <div id="resultBox" style="min-height:120px; font-size:0.875rem;">
                     <span style="color:var(--text-muted); font-family:var(--font-mono); font-size:0.8rem;">
-                        — Ejecuta una consulta para ver el resultado
+                        Ejecuta una consulta para ver el resultado
                     </span>
                 </div>
             </div>
