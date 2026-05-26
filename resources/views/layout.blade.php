@@ -39,7 +39,7 @@
         *, *::before, *::after { box-sizing: border-box; }
 
         .font-monospace{
-            color: green;
+            color: var(--accent);
             margin-left: 3px;
             margin-right: 3px;
         }
