@@ -38,6 +38,12 @@
 
         *, *::before, *::after { box-sizing: border-box; }
 
+        .font-monospace{
+            color: green;
+            margin-left: 3px;
+            margin-right: 3px;
+        }
+
         html, body {
             background-color: var(--bg-base);
             color: var(--text-primary);
@@ -48,7 +54,7 @@
         }
 
         /* ── NOISE OVERLAY ── */
-        /* Nota: NO usar z-index aquí para no crear un stacking context
+        /* no usar z-index aquí para no crear un stacking context
            que atraparía los modales de Bootstrap dentro del body */
         body::before {
             content: '';

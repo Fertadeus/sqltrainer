@@ -163,6 +163,42 @@ class ExerciseSeeder extends Seeder
                 ]),
                 'course' => 'Introducción',
                 'subtitle' => 'Uso de AND'
+            ],
+                [
+                'id' => 5,
+                'title' => 'Limit',
+                'description' => 'A veces, no nos interesará llenar nuestros resultados de datos y querremos limitar nuestra búsqueda a un número fijo de filas. En esto, cada base de datos es un mundo. Otras bases de datos utilizan <span class="font-monospace">FETCH FIRST 2 ROWS ONLY;</span>, como las basadas en Oracle, o <span class="font-monospace">SELECT TOP 2</span>, usadas por MS Access y similares. Estas sintaxis dejan claro el funcionamiento del comando: mostrará las primeras filas que devuelva la búsqueda.<br><br>Nosotros estamos utilizando una base de datos MySQL. Para limitar el número de resultados en una base de datos como la nuestra, utilizaremos la siguiente sintaxis: <span class="font-monospace">SELECT * FROM tabla LIMIT 2</span>. El "2" nos indica que limitamos nuestra búsqueda a dos resultados, pero podemos elegir cualquier número. ¡Simplemente recuerda que este comando varía entre distintas bases de datos!<br><br>Para resolver este ejercicio, vamos a utilizar una tabla que no habíamos usado hasta ahora: <span class="font-monospace">developers</span>. Recuerda que puedes ver las tablas y sus columnas con el botón de la derecha, <span class="font-monospace">Mostrar tablas</span>. Escribe una consulta que devuelva las primeras cinco filas completas de la tabla <span class="font-monospace">developers</span>',
+                'expected_sql' => 'SELECT * FROM developers LIMIT 5;',
+                'expected_result' => json_encode([
+                    [
+                        'id' => 1,
+                        'name' => 'FromSoftware',
+                        'country' => 'Japan',
+                    ],
+                    [
+                        'id' => 2,
+                        'name' => 'Team Cherry',
+                        'country' => 'Australia',
+                    ],
+                    [
+                        'id' => 3,
+                        'name' => 'CD Projekt Red',
+                        'country' => 'Poland',
+                    ],
+                     [
+                        'id' => 4,
+                        'name' => 'Rockstar Games',
+                        'country' => 'USA',
+                    ],
+                     [
+                        'id' => 5,
+                        'name' => 'Santa Monica Studio',
+                        'country' => 'USA',
+                    ]
+
+                ]),
+                'course' => 'Introducción',
+                'subtitle' => 'Limitar resultados'
             ]
         ]);
     }
