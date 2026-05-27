@@ -65,6 +65,6 @@
 
     </div>
 </div>
-</div><!-- fin container -->
+</div>
 
 @endsection

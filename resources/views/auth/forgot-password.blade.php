@@ -1,4 +1,4 @@
-{{-- forgot-password.blade.php --}}
+
 @extends('layout')
 
 @section('content')
@@ -45,6 +45,6 @@
 
     </div>
 </div>
-</div><!-- fin container -->
+</div>
 
 @endsection

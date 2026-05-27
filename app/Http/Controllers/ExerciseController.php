@@ -10,23 +10,37 @@ class ExerciseController extends Controller
 {
     public function index()
     {
-   
+        //Cuando va a mostrar la lista de ejercicios, los ordena por curso, luego por id. Y luego los agrupa por curso, que me sirve en la vista para hacer
+        //un par de cositas
         $exercises = Exercise::orderBy('course')
             ->orderBy('id')
             ->get()
             ->groupBy('course');
 
-        $completed = auth()->check()
-            ? auth()->user()->exercises->pluck('id')->toArray()
-            : [];
+        /*
+            auth()->check() : Comprueba si hay un usuario logueado
+            auth()->user() : Devuelve el usuario logueado. Esa línea, además, busca su relación en eloquent con la base de datos, saca una lista de los ID que tiene
+                             esa búsqueda, y los pasa a array.
+        */
+        if (auth()->check()) {
+            $completed = auth()->user()->exercises->pluck('id')->toArray();
+        } else {
+            $completed = [];
+        }
 
         return view('exercise.index', compact('exercises', 'completed'));
     }
+
+
+
+
+
 
     public function show($id)
     {
         
         $exercise = Exercise::findOrFail($id);
+
         //Pasa true o false dependiendo de si tiene o no un ejercicio por encima. 
         //Esto sirve para la alerta de Ejercicio completado correctamente
 
@@ -35,6 +49,11 @@ class ExerciseController extends Controller
 
         return view('exercise.show', compact('exercise', 'nextExercise'));
     }
+
+
+
+
+
 
 
     public function runQuery(Request $request, $id)
@@ -107,7 +126,11 @@ class ExerciseController extends Controller
     }
 
 
-    /*Devuelve un json con las tablas y sus columnas, escritas manualmente por mí*/
+
+
+
+
+    /*Devuelve un json con las tablas y sus columnas, escritas manualmente por mí. Esto es para el botón mostrar tablas*/
 
     public function getTables()
     {
@@ -122,7 +145,10 @@ class ExerciseController extends Controller
         return response()->json($tables);
     }
 
-    /*Vista del modo libre*/
+
+
+
+    /*Vista del modo libre. Es la misma que el show, pero le paso null en el campo ejercicios, y una flag para que sepa que está en modo libre*/
     public function free()
     {
         return view('exercise.show', [
@@ -130,7 +156,12 @@ class ExerciseController extends Controller
             'freeMode' => true
         ]);
     }
-    /*Ejecutar query en modo libre -> este va sin comprobación de que el ejercicio está bien*/
+
+
+
+
+    /*Ejecutar query en modo libre -> este va sin comprobación de que el ejercicio está bien. Este de aquí no lo escribí yo personalmente así que difiere
+    un poco en cómo funciona respecto al de arriba. Es igual en verdad, pero las validaciones se ejecutan un poco diferente.*/
 
     public function runFree(Request $request)
     {

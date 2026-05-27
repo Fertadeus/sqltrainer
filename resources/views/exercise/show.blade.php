@@ -1,10 +1,17 @@
 @extends('layout')
 
 @section('content')
+
+
+<!--CORE DE LA PÁGINA // ENUNCIADO/EDITORSQL/RESULTADO-->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-xl-10">
 
+
+
+
+        <!-- ENUNCIADO // SOLO OCURRE SI NO ESTÁ EN FREE MODE -->
             @if(!($freeMode ?? false))
                 <div class="esqla-card mb-4" style="animation-delay:0.05s; border-left: 3px solid var(--accent);">
                     <p class="section-title" style="margin-bottom:0.75rem;">enunciado</p>
@@ -15,6 +22,10 @@
                 </div>
             @endif
 
+
+
+
+        <!-- EDITOR SQL -->
             <div class="esqla-card mb-4" style="animation-delay:0.1s;">
 
                 <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
@@ -58,6 +69,10 @@
                 </div>
             </div>
 
+
+
+
+            <!-- ÁREA DE RESULTADO -->
             <div class="esqla-card" style="animation-delay:0.15s;">
                 <p class="section-title" style="margin-bottom:0.75rem;">resultado</p>
 
@@ -71,6 +86,12 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+               <!-- MODAL-->
 
 
 <div class="modal fade" id="alerta" tabindex="-1" aria-hidden="true">
@@ -89,23 +110,30 @@
 </div>
 
 
+<!-- JAVASCRIPT -->
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-    const runBtn = document.getElementById('runQuery');
-    const sqlInput = document.getElementById('sql');
-    const resultBox = document.getElementById('resultBox');
-    const nextBtnContainer = document.getElementById('nextBtnContainer');
+    const runBtn = document.getElementById('runQuery'); //Botón de comprobar
+    const sqlInput = document.getElementById('sql'); //Recuadro de consultas SQL
+    const resultBox = document.getElementById('resultBox'); //Recuadro de resultado
+    const nextBtnContainer = document.getElementById('nextBtnContainer'); //Botón de siguiente ejercicio (o al menos, donde va a ir si aciertan la respuesta)
 
-    const toggle = document.getElementById('tabToggle');
-    const drawer = document.getElementById('tablesDrawer');
-    const content = document.getElementById('tablesContent');
+    const toggle = document.getElementById('tabToggle'); //Botón de mostrar tablas
+    const drawer = document.getElementById('tablesDrawer'); //drawer del botón de mostrar tablas
+    const content = document.getElementById('tablesContent'); //todo la info de mostrar tablas
 
-    let loaded = false;
+    let loaded = false; //Y esto está hecho para que el tema del drawer no cargue antes que el resto de la página. Si no, peta.
 
-    // 
-    // EJECUTAR QUERY
-    // 
+    /*
+     EJECUTAR QUERY
+
+     Aquí incluye el uso de fetch API. Primero, tengo dos funciones en el controller, dependiendo de si estoy en free mode o no. 
+     Si hay un error, muestra el error de que te haya devuelto el fetch. Esto puedo cambiarlo y mostrar un error genérico, pero no me decido completamente.
+     Si la consulta no devuelve datos pero está bien, te lo dice. 
+
+    */ 
 
     if (runBtn) {
         runBtn.addEventListener('click', async () => {
@@ -143,6 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
+
                 if (!data.result || data.result.length === 0) {
                     resultBox.innerHTML = `
                         <span style="color:var(--text-muted); font-family:var(--font-mono); font-size:0.8rem;">
@@ -151,6 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                     return;
                 }
+
+                //TODO ESTO ES CONSTRUCCIÓN DE LA TABLA
 
                 const columns = Object.keys(data.result[0]);
 
@@ -191,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
 
+                //HASTA AQUÍ, A PARTIR DE AQUÍ COMPRUEBA SI EL OBJETO DATA TIENE QUE ESTÁ CORRECTO; Y SI LO ESTÁ MUESTRA EL MODAL
                 if (data.correct) {
                     mostrarModal();
 
@@ -359,6 +391,9 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 @endsection
 
+
+
+<!-- OTRA SECCIÓN // MOSTRAR TABLAS // SI NO LA PONGO AQUÍ ENTRA EN CONFLICTO CON EL RESTO DE CONTAINERS Y SE VA A LA MIERDA -->
 @section('fixed')
 <div id="tabToggle">
     <span id="tabText">Mostrar tablas</span>
