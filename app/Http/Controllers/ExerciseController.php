@@ -10,12 +10,7 @@ class ExerciseController extends Controller
 {
     public function index()
     {
-        //Cuando va a mostrar la lista de ejercicios, los ordena por curso, luego por id. Y luego los agrupa por curso, que me sirve en la vista para hacer
-        //un par de cositas
-        $exercises = Exercise::orderBy('course')
-            ->orderBy('id')
-            ->get()
-            ->groupBy('course');
+        $exercises = Exercise::orderBy('id')->get();
 
         /*
             auth()->check() : Comprueba si hay un usuario logueado
