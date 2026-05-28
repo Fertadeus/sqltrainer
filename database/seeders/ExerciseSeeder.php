@@ -140,6 +140,35 @@ class ExerciseSeeder extends Seeder
                 'course' => 'Introducción',
                 'subtitle' => 'Uso de LIKE',
             ],
+            [
+                'id' => 7,
+                'title' => 'Ejercicio real 1',
+                'description' => '¡Vamos a practicar todo lo que hemos aprendido hasta ahora para afianzarlo un poco! En este primer ejercicio, trata de averiguar el título y año de salida de los juegos que sean una segunda o tercera entrega en la saga. ¡Recuerda que puedes hacer todas las consultas SELECT que quieras! Puedes buscar un patrón buscando en la base de datos, y cuando sepas cómo se suelen escribir ese tipo de juegos, intentar realizar una consulta que los englobe a todos.',
+                'expected_sql' => 'SELECT title, release_year FROM games WHERE title LIKE "%2" OR title LIKE "%3";',
+                'expected_result' => json_encode([
+                    ['title' => 'The Witcher 3','release_year' => 2015],
+                    ['title' => 'Red Dead Redemption 2','release_year' => 2018],
+                    ['title' => 'Portal 2','release_year' => 2011],
+                    ['title' => 'Half-Life 2','release_year' => 2004],
+                    ['title' => 'Resident Evil 2','release_year' => 2019],
+                ]),
+                'course' => 'Primeros ejercicios de práctica',
+                'subtitle' => 'Primer ejercicio',
+            ],
+            [
+                'id' => 8,
+                'title' => 'Ejercicio real 2',
+                'description' => 'Para el segundo ejercicio, realiza una consulta que muestre el nombre de las desarrolladoras cuyo país sea USA y tengan la palabra "games" en alguna parte de su nombre.',
+                'expected_sql' => 'SELECT name FROM developers WHERE country = "USA" AND name LIKE "%games%";',
+                'expected_result' => json_encode([
+                    ['name' => 'Rockstar Games'],
+                    ['name' => 'Supergiant Games'],
+                    ['name' => 'Epic Games'],
+                    ['name' => 'Riot Games'],
+                ]),
+                'course' => 'Primeros ejercicios de práctica',
+                'subtitle' => 'Segundo ejercicio',
+            ],
         ];
 
         DB::table('exercises')->upsert(
