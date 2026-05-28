@@ -143,7 +143,7 @@ class ExerciseSeeder extends Seeder
             [
                 'id' => 7,
                 'title' => 'Ejercicio real 1',
-                'description' => '¡Vamos a practicar todo lo que hemos aprendido hasta ahora para afianzarlo un poco! En este primer ejercicio, trata de averiguar el título y año de salida de los juegos que sean una segunda o tercera entrega en la saga. ¡Recuerda que puedes hacer todas las consultas SELECT que quieras! Puedes buscar un patrón buscando en la base de datos, y cuando sepas cómo se suelen escribir ese tipo de juegos, intentar realizar una consulta que los englobe a todos.',
+                'description' => '¡Vamos a practicar todo lo que hemos aprendido hasta ahora para afianzarlo un poco! En este primer ejercicio, trata de averiguar el título y año de salida de los juegos que sean una segunda o tercera entrega en la saga. ¡Recuerda que puedes hacer todas las consultas <span class="font-monospace">SELECT</span> que quieras! Puedes buscar un patrón buscando en la base de datos, y cuando sepas cómo se suelen escribir ese tipo de juegos, intentar realizar una consulta que los englobe a todos.',
                 'expected_sql' => 'SELECT title, release_year FROM games WHERE title LIKE "%2" OR title LIKE "%3";',
                 'expected_result' => json_encode([
                     ['title' => 'The Witcher 3','release_year' => 2015],
@@ -168,6 +168,17 @@ class ExerciseSeeder extends Seeder
                 ]),
                 'course' => 'Primeros ejercicios de práctica',
                 'subtitle' => 'Segundo ejercicio',
+            ],
+            [
+                'id' => 9,
+                'title' => 'Order By',
+                'description' => 'A veces, queremos que nuestras consultas vengan ordenadas. La cláusula <span class="font-monospace">ORDER BY</span> ordena la consulta al darle el nombre de una columna. Por ejemplo, ¿nos interesa ver la tabla de juegos, pero ordenada por su fecha de salida? Escribiremos <span class="font-monospace">SELECT * FROM games ORDER BY release_year;</span>.<br><br>Además, <span class="font-monospace">ORDER BY</span> nos permite especificar si queremos que los resultados se muestren ordenados de forma ascendente o descendente. Para ello, añadiremos <span class="font-monospace">ASC</span> si queremos que sea ascendente, y <span class="font-monospace">DESC</span> si queremos que sea descendente. Por defecto se muestran los resultados de manera ascendente, así que si queremos ver los juegos ordenados por la fecha de salida, de más reciente a más antiguo, escribiremos la siguiente consulta: <span class="font-monospace">SELECT * FROM games ORDER BY release_year DESC;</span><br><br>La combinación de <span class="font-monospace">ORDER BY</span> con <span class="font-monospace">LIMIT</span> es muy potente, ya que permite seleccionar un número específico de filas, que previamente hemos ordenado como hemos querido. Para resolver este ejercicio, asumiendo que no hay "empates", realiza una consulta que muestre el juego más antiguo de la base de datos.',
+                'expected_sql' => 'SELECT * FROM games ORDER BY release_year LIMIT 1;',
+                'expected_result' => json_encode([
+                     ['id' => 15,'title' => 'Half-Life 2','genre' => 'Shooter','release_year' => 2004,'rating' => 9.8],
+                ]),
+                'course' => 'Funciones de grupo',
+                'subtitle' => 'Ordenar consultas',
             ],
         ];
 
