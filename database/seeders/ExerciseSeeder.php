@@ -180,6 +180,30 @@ class ExerciseSeeder extends Seeder
                 'course' => 'Funciones de grupo',
                 'subtitle' => 'Ordenar consultas',
             ],
+            [
+                'id' => 10,
+                'title' => 'Group By',
+                'description' => 'La sentencia <span class="font-monospace">GROUP BY</span> nos sirve para agrupar filas que tienen el mismo valor. Por ejemplo, podríamos agrupar a todos los desarrolladores que tienen el mismo país de origen, o los juegos con el mismo género. Sin embargo, a esas filas "resumidas" les falta información: no podemos seleccionar también el nombre de todas esas desarrolladoras, porque están agrupadas en una sola fila. Tal y como lo he contado, GROUP BY sólo serviría para una cosa: sacar los datos de una columna sin repetirse. Por ejemplo, usando esta consulta: <span class="font-monospace">SELECT country FROM developers GROUP BY country;</span>. Si la pruebas, verás que salen todos los países que tienen una desarrolladora registrada en nuestra base de datos, sin repetición.<br><br>Como esto es poco útil, normalmente usamos junto con <span class="font-monospace">GROUP BY</span> las denominadas "funciones de grupo". Estas funciones sirven para, al agrupar las filas en una sola "fila resumen", hacer algún tipo de cálculo con los datos que se perderían en el proceso. Aunque en los ejercios siguiente usaremos todas las funciones de grupo, en este ejercicio nos centraremos en el uso de <span class="font-monospace">AVG</span>, que significa "Average", lo que se traduce como "Media". Si yo quisiera sacar la media de las notas que tiene un videojuego por género, escribiría lo siguiente: <span class="font-monospace">SELECT genre, AVG(rating) FROM games GROUP BY genre;</span>. Como ves, escribiremos la columna a la que queramos hacerle el cálculo dentro de la función de grupo. Además, ten en cuenta que la columna que elegimos para hacer <span class="font-monospace">GROUP BY</span> debe aparecer obligatoriamente en el <span class="font-monospace">SELECT</span>.<br><br>Para pasar al siguiente ejercicio, intenta realizar una consulta que halle el año medio de salida de los juegos agrupados por su género.',
+                'expected_sql' => 'SELECT genre, AVG(release_year) FROM games GROUP BY genre;',
+                'expected_result' => json_encode([
+                     ['genre' => 'RPG','AVG(release_year)' => 2018.0000],
+                     ['genre' => 'Metroidvania','AVG(release_year)' => 2017.0000],
+                     ['genre' => 'Action-Adventure','AVG(release_year)' => 2015.5000],
+                     ['genre' => 'Action','AVG(release_year)' => 2019.0000],
+                     ['genre' => 'Roguelike','AVG(release_year)' => 2020.0000],
+                     ['genre' => 'Platformer','AVG(release_year)' => 2018.0000],
+                     ['genre' => 'Simulation','AVG(release_year)' => 2016.0000],
+                     ['genre' => 'Sandbox','AVG(release_year)' => 2011.0000],
+                     ['genre' => 'Shooter','AVG(release_year)' => 2014.6667],
+                     ['genre' => 'Puzzle','AVG(release_year)' => 2011.0000],
+                     ['genre' => 'Party','AVG(release_year)' => 2018.0000],
+                     ['genre' => 'Battle Royale','AVG(release_year)' => 2017.0000],
+                     ['genre' => 'MOBA','AVG(release_year)' => 2009.0000],
+                     ['genre' => 'Horror','AVG(release_year)' => 2019.0000],
+                ]),
+                'course' => 'Funciones de grupo',
+                'subtitle' => 'Uso de funciones de grupo: GROUP BY',
+            ],
         ];
 
         DB::table('exercises')->upsert(

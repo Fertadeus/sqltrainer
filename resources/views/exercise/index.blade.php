@@ -19,7 +19,8 @@
             @if($exercise->course !== $currentCourse)
                 @php $currentCourse = $exercise->course; @endphp
 
-                {{-- Cierra el div del curso anterior (si no es el primero) --}}
+                {{-- Cierra el div del curso anterior (si no es el primero) // básicamente va buscando cuál es el curso de cada ejercicio, 
+                y añade una nueva categoría si no es igual que el anterior --}}
                 @if(!$loop->first)
                     </div></div>
                 @endif
